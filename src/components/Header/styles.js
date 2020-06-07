@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   background: rgba(0, 0, 0, 0.5);
@@ -51,4 +52,8 @@ export const Logout = styled.button`
   padding: 0 20px;
   margin-left: 30px;
   cursor: pointer;
+
+  &:hover {
+    background: ${darken(0.06, '#d44059')};
+  }
 `;
