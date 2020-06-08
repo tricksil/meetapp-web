@@ -4,6 +4,16 @@ export function setMeetup(meetup) {
     payload: { meetup },
   };
 }
+export function newMeetup() {
+  return {
+    type: '@meetup/NEW_MEETUP',
+  };
+}
+export function meetupEdit() {
+  return {
+    type: '@meetup/MEETUP_EDIT',
+  };
+}
 
 export function createMeetupRequest(data) {
   return {
@@ -30,5 +40,11 @@ export function updateMeetupSuccess(meetup) {
   return {
     type: '@meetup/UPDATE_MEETUP_SUCCESS',
     payload: { meetup },
+  };
+}
+
+export function meetupFailure() {
+  return {
+    type: '@meetup/MEETUP_FAILURE',
   };
 }

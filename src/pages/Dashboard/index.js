@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { format, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 import { useDispatch } from 'react-redux';
 
 import { Container, Meet } from './styles';
@@ -7,7 +8,7 @@ import { Container, Meet } from './styles';
 import api from '~/services/api';
 import history from '~/services/history';
 
-import { setMeetup } from '~/store/modules/meetup/actions';
+import { setMeetup, newMeetup } from '~/store/modules/meetup/actions';
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -20,8 +21,12 @@ function Dashboard() {
         ...meetup,
         dateFormatted: format(
           parseISO(meetup.date),
-          "dd 'de' MMMM', às' HH'h'"
+          "dd 'de' MMMM', às' HH'h'",
+          {
+            locale: pt,
+          }
         ),
+        date: new Date(meetup.date),
       }));
       setMeetups(data);
     }
@@ -33,12 +38,19 @@ function Dashboard() {
     history.push('/details');
   }
 
+  function handleNewMeetup() {
+    dispatch(newMeetup());
+    history.push('/meetup');
+  }
+
   return (
     <Container>
       <header>
         <h2>Meus meetups</h2>
 
-        <button type="button">Novo meetup</button>
+        <button type="button" onClick={handleNewMeetup}>
+          Novo meetup
+        </button>
       </header>
 
       <ul>
