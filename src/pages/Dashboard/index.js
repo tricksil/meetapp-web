@@ -26,7 +26,6 @@ function Dashboard() {
             locale: pt,
           }
         ),
-        date: new Date(meetup.date),
       }));
       setMeetups(data);
     }

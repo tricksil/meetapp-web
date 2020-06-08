@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
+import { parseISO } from 'date-fns';
 import { Container } from './styles';
 
 import BannerInput from './BannerInput';
@@ -38,7 +39,7 @@ export default function Meetup() {
   return (
     <Container>
       <Form
-        initialData={edit && meetup}
+        initialData={edit && { ...meetup, date: parseISO(meetup.date) }}
         schema={schema}
         onSubmit={handleSubmit}
       >
