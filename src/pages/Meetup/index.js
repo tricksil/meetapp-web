@@ -15,7 +15,7 @@ import {
 } from '~/store/modules/meetup/actions';
 
 const schema = Yup.object().shape({
-  banner_id: Yup.string(),
+  banner_id: Yup.number(),
   title: Yup.string().required('Título é obrigatório'),
   description: Yup.string().required('Descrição é obrigatório'),
   date: Yup.string().required('Data é obrigatório'),
@@ -26,9 +26,9 @@ export default function Meetup() {
   const edit = useSelector((state) => state.meetup.edit);
   const meetup = useSelector((state) => state.meetup.active);
   const dispatch = useDispatch();
-  console.tron.log(meetup);
+
   function handleSubmit(data) {
-    console.tron.log('entrei', data);
+    console.tron.log(data);
     if (edit) {
       dispatch(updateMeetupRequest(data));
     } else {

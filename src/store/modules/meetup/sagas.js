@@ -44,7 +44,6 @@ export function* updateMeetup({ payload }) {
       return;
     }
     const idMeetup = yield select((state) => state.meetup.active.id);
-    console.tron.log(idMeetup);
     const meetup = {
       banner_id,
       ...rest,
@@ -62,7 +61,8 @@ export function* updateMeetup({ payload }) {
       ),
       date: parseISO(response.data.date),
     };
-    yield put(updateMeetupSuccess({ data }));
+    console.tron.log(data);
+    yield put(updateMeetupSuccess(data));
 
     history.push('/details');
   } catch (error) {
